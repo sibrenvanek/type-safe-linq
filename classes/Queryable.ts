@@ -1,0 +1,3 @@
+class Queryable implements IQueryable {
+
+}
