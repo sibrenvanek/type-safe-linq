@@ -1,0 +1,1 @@
+export type Selector<TElement, TOut> = (element: TElement) => TOut;
