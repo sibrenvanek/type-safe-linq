@@ -1,0 +1,26 @@
+{
+	"name": "type-safe-linq",
+	"version": "1.0.0",
+	"description": "",
+	"main": "app.ts",
+	"dependencies": {
+		"@types/lodash": "^4.14.123",
+		"lodash": "^4.17.11",
+		"typescript": "^3.3.4000"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "ts-node app.ts"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sibrenvanek/type-safe-linq.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/sibrenvanek/type-safe-linq/issues"
+	},
+	"homepage": "https://github.com/sibrenvanek/type-safe-linq#readme"
+}
