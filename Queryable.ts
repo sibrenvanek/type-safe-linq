@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 class Table<T extends object>{
 	data: Array<T>
 
@@ -7,10 +5,8 @@ class Table<T extends object>{
 		this.data = data;
 	}
 
-	select<Properties extends Array<keyof T>>(...properties: Properties): Table<_.Omit<T, ConvertProperties<Properties>>> {
-		return {
-			
-		}
+	select = function <K extends keyof T>(...properties: Array<K>): T[K] {
+		return 
 	}
 }
 
@@ -38,4 +34,4 @@ let data: Array<test> = [{
 
 let foo = new Table<test>(data);
 
-foo.select('a', 'c').select('')
+let bar = foo.select('a', 'c');
