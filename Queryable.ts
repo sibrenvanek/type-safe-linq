@@ -1,3 +1,5 @@
+import {Omit, PickKeys} from 'types'
+
 export class Table<T extends Object>{
 	private data: Array<T>
 
@@ -38,6 +40,7 @@ function sortAsc<T, K extends keyof T>(data: Array<T>, property: K): Array<T> {
 		return 0;
 	})
 }
+
 function sortDesc<T, K extends keyof T>(data: Array<T>, property: K): Array<T> {
 	return data.sort((a: T, b: T) => {
 		if (a[property] > b[property]) {
@@ -49,9 +52,3 @@ function sortDesc<T, K extends keyof T>(data: Array<T>, property: K): Array<T> {
 		return 0;
 	});
 }
-
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
-
-type PickKeys<T, Conditions extends Array<keyof T>> = Pick<T, {
-    [K in keyof T]: K extends (Conditions extends Array<infer O> ? O : never) ? K : never
-}[keyof T]>
