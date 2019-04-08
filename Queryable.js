@@ -1,47 +1,31 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const lodash_1 = __importDefault(require("lodash"));
+const functions_1 = require("./functions");
 class Table {
     constructor(data) {
-        this.getData = () => this.data;
+        this.getData = () => lodash_1.default.cloneDeep(this.data);
         this.select = function (...properties) {
-            return new Table(this.data.map((oldObject) => {
-                return pick(oldObject, properties);
+            return new Table(this.data.map((object) => {
+                return functions_1.pick(object, properties);
+            }));
+        };
+        this.selectPickKeys = function (...properties) {
+            return new Table(this.data.map((object) => {
+                return functions_1.pickKeys(object, properties);
             }));
         };
         this.where = function (predicate) {
             return new Table(this.data.filter(predicate));
         };
         this.orderBy = function (property, direction = 'asc') {
-            return new Table(direction === 'asc' ? sortAsc(this.data, property) : sortDesc(this.data, property));
+            return new Table(direction === 'asc' ? functions_1.sortAsc(this.data, property) : functions_1.sortDesc(this.data, property));
         };
         this.data = data;
     }
 }
 exports.Table = Table;
-function pick(obj, keys) {
-    return keys.map(k => k in obj ? { [k]: obj[k] } : {})
-        .reduce((res, o) => Object.assign(res, o), {});
-}
-function sortAsc(data, property) {
-    return data.sort((a, b) => {
-        if (a[property] > b[property]) {
-            return 1;
-        }
-        if (a[property] < b[property]) {
-            return -1;
-        }
-        return 0;
-    });
-}
-function sortDesc(data, property) {
-    return data.sort((a, b) => {
-        if (a[property] > b[property]) {
-            return -1;
-        }
-        if (a[property] < b[property]) {
-            return 1;
-        }
-        return 0;
-    });
-}
 //# sourceMappingURL=Queryable.js.map
